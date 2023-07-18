@@ -57,15 +57,6 @@ contract SwapExamples {
         ISwapRouter.ExactInputParams memory params = ISwapRouter
             .ExactInputParams({
                 path: _path,
-                // abi.encodePacked(
-                //     DAI,
-                //     uint24(500),
-                //     WETH9
-                //     // uint24(500),
-                //     // USDC,
-                //     // uint24(3000),
-                //     // AAVE
-                // ),
                 recipient: _recipient,
                 deadline: block.timestamp + 300, // 5 minutes(300 seconds)
                 amountIn: _amountIn,
@@ -80,22 +71,9 @@ contract SwapExamples {
         // return IERC20(DAI).balanceOf(address(this));
         return IERC20(USDC).balanceOf(msg.sender);
 
-        // return IERC20(USDC).allowance(msg.sender, address(this));
-        
-        // return IWETH(WETH9).balanceOf(address(this));
-        // return IWETH(WETH9).balanceOf(msg.sender);
-        // return address(this).balance;
+      
     }
 receive() payable external {}
 }
 
 
-        // IWETH(WETH9).withdraw(msg.value);
-
-        // TransferHelper.safeTransferFrom(
-        //     WETH9,
-        //     msg.sender,
-        //     address(this),
-        //     msg.value
-        // );
-        // TransferHelper.safeApprove(WETH9, address(swapRouter), msg.value);

@@ -15,94 +15,21 @@ async function main() {
 
   accounts = await ethers.getSigners(1)
 
-  ////////////////////////////////////////////////////////////////
-  //  ________                                    __            //
-  // /        |                                  /  |           //
-  // $$$$$$$$/   ______   _____  ____    ______  $$ |  ______   //
-  // $$ |__     /      \ /     \/    \  /      \ $$ | /      \  //
-  // $$    |    $$$$$$  |$$$$$$ $$$$  |/$$$$$$  |$$ |/$$$$$$  | //
-  // $$$$$/     /    $$ |$$ | $$ | $$ |$$ |  $$ |$$ |$$    $$ | //
-  // $$ |_____ /$$$$$$$ |$$ | $$ | $$ |$$ |__$$ |$$ |$$$$$$$$/  //
-  // $$       |$$    $$ |$$ | $$ | $$ |$$    $$/ $$ |$$       | //
-  // $$$$$$$$/  $$$$$$$/ $$/  $$/  $$/ $$$$$$$/  $$/  $$$$$$$/  //
-  //                                   $$ |                     //
-  //                                   $$ |                     //
-  //                                   $$/                      //
-  //                                                            //
-  ////////////////////////////////////////////////////////////////
-
-  // const SwapExamples = await ethers.getContractFactory("SwapExamples")
-  // swapExamples = await SwapExamples.deploy()
-  // await swapExamples.deployed()
-
-  // Deposit WETH
-  // await weth.connect(accounts[0]).deposit({ value: 10 })
-  // await weth.connect(accounts[0]).withdraw(10)
-  // await weth.approve(swapExamples.address, amountIn)
-
-  // Swap single
-  // await swapExamples.connect(accounts[0]).swapExactInputSingle(
-  //   accounts[1].address,
-  //   {value:  10n ** 18n}
-  // )
-
-  // console.log("DAI balance", await dai.balanceOf(accounts[1].address))
-
-  // console.log("testy", await swapExamples.connect(accounts[1]).testy3())
-  // console.log(await accounts[0].getBalance())
-
-  // Swap multiple
-  // const path = [USDC, DAI]
-  // const fees = [500]
-  // const encodedPath = encodePath(path, fees)
-  // // console.log(encodedPath)
-  // inputToken = await ethers.getContractAt("IERC20", path[0])
-  // inputAmount = 10n ** 3n
-
-  // await inputToken.connect(accounts[1]).approve(swapExamples.address, inputAmount)
-  // await swapExamples.connect(accounts[1]).swapExactInputMultihop(
-  //   inputAmount,
-  //   accounts[0].address,
-  //   encodedPath,
-  //   path[0]
-  // )
-  // console.log("dai balance", await dai.balanceOf(accounts[0].address))
-  // console.log("test", await swapExamples.connect(accounts[1]).testy3())
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //                                                    __   ______   __                            __    __                //
-  //                                                   /  | /      \ /  |                          /  |  /  |               //
-  //   _______   ______    ______   __   __   __   ____$$ |/$$$$$$  |$$ |____    ______    ______  $$/  _$$ |_    __    __  //
-  //  /       | /      \  /      \ /  | /  | /  | /    $$ |$$ |  $$/ $$      \  /      \  /      \ /  |/ $$   |  /  |  /  | //
-  // /$$$$$$$/ /$$$$$$  |/$$$$$$  |$$ | $$ | $$ |/$$$$$$$ |$$ |      $$$$$$$  | $$$$$$  |/$$$$$$  |$$ |$$$$$$/   $$ |  $$ | //
-  // $$ |      $$ |  $$/ $$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |   __ $$ |  $$ | /    $$ |$$ |  $$/ $$ |  $$ | __ $$ |  $$ | //
-  // $$ \_____ $$ |      $$ \__$$ |$$ \_$$ \_$$ |$$ \__$$ |$$ \__/  |$$ |  $$ |/$$$$$$$ |$$ |      $$ |  $$ |/  |$$ \__$$ | //
-  // $$       |$$ |      $$    $$/ $$   $$   $$/ $$    $$ |$$    $$/ $$ |  $$ |$$    $$ |$$ |      $$ |  $$  $$/ $$    $$ | //
-  //  $$$$$$$/ $$/        $$$$$$/   $$$$$/$$$$/   $$$$$$$/  $$$$$$/  $$/   $$/  $$$$$$$/ $$/       $$/    $$$$/   $$$$$$$ | //
-  //                                                                                                             /  \__$$ | //
-  //                                                                                                             $$    $$/  //
-  //                                                                                                              $$$$$$/   //
-  //                                                                                                                        //
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const CrowdCharity = await ethers.getContractFactory('CrowdCharity')
   const crowdCharity = await CrowdCharity.deploy()
   await crowdCharity.connect(accounts[0]).createCampaign(100)
 
-  ///////////////////////
-  //                   //
-  //    Swap Single    //
-  //                   //
-  ///////////////////////
+  
+
+  //    Swap Single  
+
   await crowdCharity
     .connect(accounts[1])
     .fundCampaignWithEth(1, { value: 10n ** 18n })
 
-  /////////////////////////
-  //                     //
-  //    Swap multiple    //
-  //                     //
-  /////////////////////////
+
+  //    Swap multiple   
   const path = [USDC, DAI]
   const fees = [500]
   const encodedPath = encodePath(path, fees)
@@ -110,11 +37,7 @@ async function main() {
   inputToken = await ethers.getContractAt('IERC20', path[0])
   inputAmount = 1000
 
-  /////////////////////////
-  //                     //
-  //    USDC to DAI      //
-  //                     //
-  /////////////////////////
+  //    USDC to DAI     
   // generate USDC coins for address1 just for testing
   await crowdCharity
     .connect(accounts[0])
@@ -129,17 +52,13 @@ async function main() {
     .connect(accounts[1])
     .fundCampaignWithToken(1, inputAmount, encodedPath, path[0])
 
-  ////////////////////////
-  //                    //
-  //    DAI directly    //
-  //                    //
-  ////////////////////////
+  //    DAI directly    
+ 
 
   // generate DAI coins for address1 just for testing
   await crowdCharity
     .connect(accounts[0])
     .single_Swap_For_Testing(accounts[1].address, DAI, { value: 10n ** 18n }) // DAI
-  // console.log("DAI:", await dai.balanceOf(accounts[1].address))
   // approve contract to use this DAI amount
   await dai.connect(accounts[1]).approve(crowdCharity.address, inputAmount)
   //  fund with DAI

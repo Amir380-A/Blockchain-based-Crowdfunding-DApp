@@ -173,35 +173,5 @@ contract CharityRewards is ERC1155, Ownable {
         return balances;
     }
 
-    // /** @notice Function to get subtoken details
-    //  * @param _tokenId subtoken id
-    //  */
-    // function getToken(
-    //     uint _tokenId
-    // )
-    //     public
-    //     view
-    //     returns (string memory _name, string memory _symbol, string memory _uri)
-    // {
-    //     return (
-    //         tokens[_tokenId].name,
-    //         tokens[_tokenId].symbol,
-    //         tokens[_tokenId].uri
-    //     );
-    // }
-
-    // /** @notice overriden function to prevent all non-owner token holders from minting, transfering, and burning their tokens AKA (soulbound tokens)
-    //   */
-    // function _beforeTokenTransfer(
-    //     address operator,
-    //     address from,
-    //     address to,
-    //     uint[] memory ids,
-    //     uint[] memory amounts,
-    //     bytes memory data
-    // ) internal view override onlyOwner{}
-
-    // function dummy2(address a) pure  public returns (address){
-    //     return a;
-    // }
+ 
 }
