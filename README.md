@@ -4,7 +4,8 @@ Graduation Project is about Making a Crowdfunding Decentralized App using Blockc
 ## Description
 
 The project involves creating a Blockchain-powered App designed for Decentralized Crowdfunding, emphasizing transparency, security, and decentralization. 
-It utilizes Smart Contracts, which are immutable artificial contacts responsible for enforcing agreements without the possibility of alteration after deployment.
+It utilizes Smart Contracts, which are immutable artificial contacts responsible for enforcing agreements without the possibility of alteration after deployment..
+
 
 
 
