@@ -1,0 +1,11 @@
+CrowdFunding.code-workspace
+.vscode
+blockchain/artifacts    
+blockchain/cache
+# package.json
+node_modules
+.env
+coverage
+frontend/dist
+logs.log
+logs
