@@ -1,5 +1,5 @@
 # Blockchain-based-Crowdfunding-DApp
-Graduation Project is about Making a Crowdfunding Decentralized App using Blockchain Technology on top of Ethereum Network.
+Supply is about Making a Crowdfunding Decentralized App using Blockchain Technology on top of Ethereum Network.
 
 ## Description
 
